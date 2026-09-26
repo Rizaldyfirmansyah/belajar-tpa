@@ -6,36 +6,12 @@ import {
   GraduationCap, BookOpen, ClipboardList, BarChart2, Brain,
   Clock, Target, Award, Users, Building2, TrendingUp, CheckCircle, ArrowRight,
 } from 'lucide-react'
+import SiteHeader from '@/components/layout/SiteHeader'
+import { C, W, shadowSoft } from '@/lib/theme'
 
 // ── Design tokens ──────────────────────────────────────────────────────────
-const C = {
-  ink:        '#0A0F20',
-  navy:       '#0D1430',
-  navy2:      '#111B40',
-  navyLine:   'rgba(255,255,255,0.10)',
-  blue:       '#2C53EA',
-  blue600:    '#2042C8',
-  blueSoft:   '#5B7BFF',
-  blue100:    '#EAF0FF',
-  green:      '#18BD73',
-  greenSoft:  '#4FE0A0',
-  green50:    '#E8F8F0',
-  cream:      '#F5F4EF',
-  cream2:     '#FBFAF7',
-  line:       '#E7E4DC',
-  inkText:    '#0E1626',
-  bodyText:   '#444E5E',
-  muted:      '#707A8A',
-  onDark:     '#EAEEF8',
-  onDarkSoft: '#A4ADC4',
-  onDarkMute: '#6E7794',
-} as const
-
-const ss = '0 1px 2px rgba(15,23,42,.04), 0 4px 14px rgba(15,23,42,.05)'
-const sm = '0 8px 30px rgba(13,20,48,.08), 0 2px 8px rgba(13,20,48,.05)'
+const ss = shadowSoft
 const sb = '0 18px 40px rgba(44,83,234,.30)'
-
-const W = { maxWidth: 1180, margin: '0 auto', padding: '0 32px' }
 
 const JOURNEY = [
   { cx: 143, cy: 490, label: 'Latihan TPA',      sub: 'Mulai dari sini',      color: C.blueSoft, right: false },
@@ -45,14 +21,7 @@ const JOURNEY = [
 ]
 
 export default function LandingPage() {
-  const [scrolled, setScrolled] = useState(false)
   const [score, setScore] = useState(540)
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', fn, { passive: true })
-    return () => window.removeEventListener('scroll', fn)
-  }, [])
 
   useEffect(() => {
     const target = 692
@@ -80,7 +49,10 @@ export default function LandingPage() {
   }, [])
 
   return (
-    <div style={{ background: C.cream, fontFamily: "'Plus Jakarta Sans',sans-serif", color: C.bodyText, overflowX: 'hidden' }}>
+    // overflowX 'clip', bukan 'hidden': 'hidden' bikin div ini jadi scroll
+    // container sehingga position:sticky pada header menempel ke div, bukan
+    // ke viewport, dan header ikut hilang saat halaman di-scroll.
+    <div style={{ background: C.cream, fontFamily: "'Plus Jakarta Sans',sans-serif", color: C.bodyText, overflowX: 'clip' }}>
       <style dangerouslySetInnerHTML={{ __html: `
         *{box-sizing:border-box} a{text-decoration:none}
         .rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
@@ -117,32 +89,7 @@ export default function LandingPage() {
       ` }} />
 
       {/* ── NAV ── */}
-      <header style={{
-        position: 'sticky', top: 0, zIndex: 100, height: 76,
-        background: scrolled ? 'rgba(247,246,242,0.88)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(14px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
-        borderBottom: scrolled ? `1px solid ${C.line}` : '1px solid transparent',
-        transition: 'background .3s,border-color .3s',
-      }}>
-        <div style={{ ...W, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} className="ip">
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 38, height: 38, borderRadius: 11, background: 'linear-gradient(150deg,#5B7BFF,#2C53EA)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <GraduationCap size={21} color="white" />
-            </div>
-            <span style={{ fontSize: 19, fontWeight: 800, color: scrolled ? C.inkText : C.onDark, transition: 'color .3s' }}>Belajar TPA</span>
-          </Link>
-          <nav className="nl" style={{ display: 'flex', gap: 38 }}>
-            {[['#fitur','Fitur'],['#cara-kerja','Cara Kerja'],['#harga','Harga']].map(([h,l]) => (
-              <a key={h} href={h} style={{ fontSize: 15, fontWeight: 600, color: scrolled ? C.bodyText : C.onDarkSoft, transition: 'color .3s' }}>{l}</a>
-            ))}
-          </nav>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <Link href="/login" style={{ fontSize: 15, fontWeight: 600, color: scrolled ? C.bodyText : C.onDarkSoft, transition: 'color .3s' }}>Masuk</Link>
-            <Link href="/register" className="bh" style={{ background: C.blue, color: 'white', fontSize: 15, fontWeight: 600, padding: '9px 20px', borderRadius: 10 }}>Daftar Gratis</Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* ── HERO ── */}
       <section style={{ background: `linear-gradient(180deg,${C.ink},${C.navy} 60%,${C.ink})`, padding: '70px 0 0', position: 'relative', overflow: 'hidden' }}>

@@ -525,7 +525,7 @@ export default function LandingPage() {
             {[
               { title: 'Produk',     links: [['Modul Belajar','/belajar'],['Try Out','/tryout'],['Dashboard','/dashboard'],['Bookmark','/bookmark']] },
               { title: 'Persiapan', links: [['Seleksi S2','#'],['Beasiswa LPDP','#'],['Rekrutmen BUMN','#'],['CPNS / ASN','#']] },
-              { title: 'Perusahaan',links: [['Tentang Kami','#'],['Blog','#'],['Kontak','#'],['Kebijakan Privasi','#']] },
+              { title: 'Perusahaan',links: [['Kontak','/legal/kontak'],['Syarat & Ketentuan','/legal/syarat-ketentuan'],['Kebijakan Privasi','/legal/kebijakan-privasi'],['Kebijakan Refund','/legal/kebijakan-refund']] },
             ].map(({ title, links }) => (
               <div key={title}>
                 <p style={{ fontSize: 13, fontWeight: 700, color: C.onDark, letterSpacing: '0.08em', margin: '0 0 16px' }}>{title}</p>

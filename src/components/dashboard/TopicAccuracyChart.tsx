@@ -45,7 +45,10 @@ export default function TopicAccuracyChart({ data }: TopicAccuracyChartProps) {
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 0, right: 10, left: 80, bottom: 0 }}
+          // left: 0, bukan 80 — YAxis di bawah sudah punya width sendiri untuk
+          // label topik. Dulu dua-duanya diisi 80, jadi ruang kiri kepakai 160px
+          // dan batangnya terdorong ke tengah di layar HP.
+          margin={{ top: 0, right: 10, left: 0, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" horizontal={false} />
           <XAxis

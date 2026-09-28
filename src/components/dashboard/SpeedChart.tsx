@@ -38,7 +38,8 @@ export default function SpeedChart({ data }: SpeedChartProps) {
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 0, right: 10, left: 80, bottom: 0 }}
+          // left: 0 — lihat catatan yang sama di TopicAccuracyChart.
+          margin={{ top: 0, right: 10, left: 0, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" horizontal={false} />
           <XAxis

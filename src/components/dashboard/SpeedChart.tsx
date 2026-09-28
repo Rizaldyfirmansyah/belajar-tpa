@@ -33,7 +33,7 @@ export default function SpeedChart({ data }: SpeedChartProps) {
   }
 
   return (
-    <div className="h-72">
+    <div className="h-[420px]">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
@@ -44,7 +44,7 @@ export default function SpeedChart({ data }: SpeedChartProps) {
           <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" horizontal={false} />
           <XAxis
             type="number"
-            tick={{ fontSize: 11, fill: '#9ca3af' }}
+            tick={{ fontSize: 10.5, fill: '#767C87' }}
             tickLine={false}
             axisLine={false}
             tickFormatter={(v) => `${v}s`}
@@ -52,10 +52,11 @@ export default function SpeedChart({ data }: SpeedChartProps) {
           <YAxis
             type="category"
             dataKey="label"
-            tick={{ fontSize: 11, fill: '#374151' }}
+            tick={{ fontSize: 10.5, fill: '#41474F' }}
             tickLine={false}
             axisLine={false}
-            width={80}
+            width={104}
+            interval={0}
           />
           <Tooltip content={<CustomTooltip />} />
           <Bar dataKey="avgSec" radius={[0, 4, 4, 0]} maxBarSize={20}>

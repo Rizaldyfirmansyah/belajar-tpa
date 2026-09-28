@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import Sidebar from '@/components/layout/Sidebar'
 import AppHeader from '@/components/layout/AppHeader'
@@ -14,6 +14,13 @@ interface AppShellProps {
 
 export default function AppShell({ children, userName, userEmail, isAdmin = false }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  // Di layar kecil sidebar menutupi seluruh konten, jadi mulai tertutup.
+  // Dicek setelah mount, bukan saat inisialisasi state, supaya hasil render
+  // server dan client tetap sama (tidak memicu hydration mismatch).
+  useEffect(() => {
+    if (window.innerWidth < 1024) setSidebarOpen(false)
+  }, [])
 
   return (
     <div className="min-h-screen bg-canvas">

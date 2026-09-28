@@ -40,7 +40,7 @@ export default function TopicAccuracyChart({ data }: TopicAccuracyChartProps) {
   }
 
   return (
-    <div className="h-72">
+    <div className="h-[420px]">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
@@ -54,7 +54,7 @@ export default function TopicAccuracyChart({ data }: TopicAccuracyChartProps) {
           <XAxis
             type="number"
             domain={[0, 1]}
-            tick={{ fontSize: 11, fill: '#9ca3af' }}
+            tick={{ fontSize: 10.5, fill: '#767C87' }}
             tickLine={false}
             axisLine={false}
             tickFormatter={(v) => `${Math.round(v * 100)}%`}
@@ -62,10 +62,11 @@ export default function TopicAccuracyChart({ data }: TopicAccuracyChartProps) {
           <YAxis
             type="category"
             dataKey="label"
-            tick={{ fontSize: 11, fill: '#374151' }}
+            tick={{ fontSize: 10.5, fill: '#41474F' }}
             tickLine={false}
             axisLine={false}
-            width={80}
+            width={104}
+            interval={0}
           />
           <Tooltip content={<CustomTooltip />} />
           <ReferenceLine x={0.7} stroke="#22c55e" strokeDasharray="4 2" opacity={0.5} />

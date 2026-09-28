@@ -63,14 +63,14 @@ export default function FeedbackButton({ isOpen }: { isOpen: boolean }) {
           onClick={() => setModalOpen(true)}
           title={!isOpen ? 'Kirim saran' : undefined}
           className={cn(
-            'w-full rounded-lg border border-dashed border-blue-400/50 bg-blue-600/30',
-            'text-blue-100 hover:bg-blue-600 hover:text-white hover:border-blue-300',
+            'w-full rounded-lg border border-dashed border-line bg-canvas',
+            'text-body hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300',
             'transition-colors duration-150',
             isOpen ? 'p-3 text-left' : 'p-3 text-left lg:p-2.5 lg:flex lg:justify-center'
           )}
         >
           <span className={cn('flex items-center gap-2.5', !isOpen && 'lg:gap-0')}>
-            <MessageSquarePlus size={18} className="flex-shrink-0 text-blue-200" />
+            <MessageSquarePlus size={18} className="flex-shrink-0 text-muted" />
             <span
               className={cn(
                 'text-sm font-medium whitespace-nowrap overflow-hidden transition-all duration-200',
@@ -82,7 +82,7 @@ export default function FeedbackButton({ isOpen }: { isOpen: boolean }) {
           </span>
           <span
             className={cn(
-              'block text-xs text-blue-200/80 mt-1 leading-snug whitespace-normal',
+              'block text-xs text-muted mt-1 leading-snug whitespace-normal',
               !isOpen && 'lg:hidden'
             )}
           >

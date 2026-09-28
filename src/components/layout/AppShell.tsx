@@ -16,7 +16,7 @@ export default function AppShell({ children, userName, userEmail, isAdmin = fals
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-canvas">
       {/* Mobile backdrop */}
       {sidebarOpen && (
         <div

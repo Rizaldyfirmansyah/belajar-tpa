@@ -39,14 +39,14 @@ export default function Sidebar({ isOpen, onClose, isAdmin = false }: SidebarPro
 
   return (
     <aside className={cn(
-      'fixed left-0 top-0 h-full flex flex-col z-30 bg-blue-700 overflow-hidden',
+      'fixed left-0 top-0 h-full flex flex-col z-30 bg-surface border-r border-line overflow-hidden',
       'transition-all duration-200 ease-in-out',
       isOpen
         ? 'w-[240px] translate-x-0'
         : 'w-[240px] -translate-x-full lg:w-[64px] lg:translate-x-0'
     )}>
       {/* Logo */}
-      <div className="border-b border-blue-600 flex-shrink-0">
+      <div className="border-b border-line flex-shrink-0">
         <Link
           href="/dashboard"
           onClick={handleNavClick}
@@ -55,15 +55,15 @@ export default function Sidebar({ isOpen, onClose, isAdmin = false }: SidebarPro
             !isOpen && 'lg:justify-center lg:px-0 lg:gap-0'
           )}
         >
-          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
             <GraduationCap size={16} className="text-white" />
           </div>
           <div className={cn(
             'overflow-hidden transition-all duration-200 whitespace-nowrap',
             !isOpen ? 'lg:w-0 lg:opacity-0 lg:ml-0 ml-0' : 'w-auto opacity-100'
           )}>
-            <div className="text-sm font-heading font-bold text-white leading-tight">Belajar TPA</div>
-            <div className="text-xs text-blue-200 leading-tight">Latihan TPA</div>
+            <div className="text-sm font-heading font-bold text-ink leading-tight">Belajar TPA</div>
+            <div className="text-xs text-muted leading-tight">Latihan TPA</div>
           </div>
         </Link>
       </div>
@@ -82,13 +82,13 @@ export default function Sidebar({ isOpen, onClose, isAdmin = false }: SidebarPro
                 'flex items-center rounded-lg py-2.5 transition-colors duration-150',
                 isOpen ? 'px-3 gap-3' : 'px-3 gap-3 lg:justify-center lg:px-0',
                 isActive
-                  ? 'bg-white text-blue-700'
-                  : 'text-blue-100 hover:bg-blue-600 hover:text-white'
+                  ? 'bg-blue-50 text-blue-700 font-semibold'
+                  : 'text-body hover:bg-canvas hover:text-ink'
               )}
             >
               <Icon
                 size={18}
-                className={cn('flex-shrink-0', isActive ? 'text-blue-600' : 'text-blue-200')}
+                className={cn('flex-shrink-0', isActive ? 'text-blue-600' : 'text-muted')}
               />
               <span className={cn(
                 'text-sm font-medium whitespace-nowrap transition-all duration-200 overflow-hidden',
@@ -106,7 +106,7 @@ export default function Sidebar({ isOpen, onClose, isAdmin = false }: SidebarPro
 
       {/* Admin */}
       {isAdmin && (
-        <div className="border-t border-blue-600 p-2 flex-shrink-0">
+        <div className="border-t border-line p-2 flex-shrink-0">
           <Link
             href="/admin/questions"
             onClick={handleNavClick}
@@ -115,13 +115,13 @@ export default function Sidebar({ isOpen, onClose, isAdmin = false }: SidebarPro
               'flex items-center rounded-lg py-2.5 transition-colors duration-150',
               isOpen ? 'px-3 gap-3' : 'px-3 gap-3 lg:justify-center lg:px-0',
               pathname.startsWith('/admin')
-                ? 'bg-white text-blue-700'
-                : 'text-blue-100 hover:bg-blue-600 hover:text-white'
+                ? 'bg-blue-50 text-blue-700 font-semibold'
+                : 'text-body hover:bg-canvas hover:text-ink'
             )}
           >
             <ShieldCheck
               size={18}
-              className={cn('flex-shrink-0', pathname.startsWith('/admin') ? 'text-blue-600' : 'text-blue-200')}
+              className={cn('flex-shrink-0', pathname.startsWith('/admin') ? 'text-blue-600' : 'text-muted')}
             />
             <span className={cn(
               'text-sm font-medium whitespace-nowrap transition-all duration-200 overflow-hidden',
@@ -134,16 +134,16 @@ export default function Sidebar({ isOpen, onClose, isAdmin = false }: SidebarPro
       )}
 
       {/* Logout */}
-      <div className="border-t border-blue-600 p-2 flex-shrink-0">
+      <div className="border-t border-line p-2 flex-shrink-0">
         <button
           onClick={handleLogout}
           title={!isOpen ? 'Keluar' : undefined}
           className={cn(
-            'w-full flex items-center rounded-lg py-2.5 text-blue-100 hover:bg-blue-600 hover:text-white transition-colors',
+            'w-full flex items-center rounded-lg py-2.5 text-body hover:bg-canvas hover:text-ink transition-colors',
             isOpen ? 'px-3 gap-3' : 'px-3 gap-3 lg:justify-center lg:px-0'
           )}
         >
-          <LogOut size={18} className="text-blue-200 flex-shrink-0" />
+          <LogOut size={18} className="text-muted flex-shrink-0" />
           <span className={cn(
             'text-sm font-medium whitespace-nowrap transition-all duration-200 overflow-hidden',
             !isOpen && 'lg:w-0 lg:opacity-0'

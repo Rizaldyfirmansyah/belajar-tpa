@@ -10,9 +10,12 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('name, is_admin')
+    .select('name, is_admin, onboarded_at')
     .eq('id', user.id)
     .single()
+
+  // Belum pernah isi target skor & tanggal tes — antar ke onboarding dulu.
+  if (profile && !profile.onboarded_at) redirect('/onboarding')
 
   const userName = profile?.name || user.email?.split('@')[0] || 'User'
   const userEmail = user.email || ''

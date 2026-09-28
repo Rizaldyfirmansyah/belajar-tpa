@@ -164,6 +164,9 @@ export interface AiAnalysisCache {
 
 // Dashboard metrics
 export interface DashboardMetrics {
+  userName: string
+  targetScore: number
+  testDate: string | null
   lastScore?: number
   lastScoreDiff?: number
   totalSessions: number

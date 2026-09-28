@@ -9,6 +9,13 @@ export async function GET() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json<ApiResponse>({ error: 'Unauthorized' }, { status: 401 })
 
+  // Profil: dipakai untuk sapaan & hitung mundur tanggal tes di dashboard
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('name, target_score, test_date')
+    .eq('id', user.id)
+    .single()
+
   // Completed sessions
   const { data: sessions } = await supabase
     .from('tryout_sessions')
@@ -118,6 +125,9 @@ export async function GET() {
   const prevScore = sessionList.length > 1 ? sessionList[sessionList.length - 2].score_final : undefined
 
   const metrics: DashboardMetrics = {
+    userName: profile?.name || user.email?.split('@')[0] || 'Kamu',
+    targetScore: profile?.target_score ?? 475,
+    testDate: profile?.test_date ?? null,
     lastScore: lastScore ?? undefined,
     lastScoreDiff: lastScore && prevScore ? lastScore - prevScore : undefined,
     totalSessions: sessionList.length,

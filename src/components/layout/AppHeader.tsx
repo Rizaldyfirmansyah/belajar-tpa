@@ -10,10 +10,10 @@ interface AppHeaderProps {
 
 export default function AppHeader({ userName, onToggle }: AppHeaderProps) {
   return (
-    <header className="sticky top-0 z-10 h-14 bg-white border-b border-gray-200 flex items-center gap-3 px-4 flex-shrink-0">
+    <header className="sticky top-0 z-10 h-14 bg-surface/85 backdrop-blur border-b border-line flex items-center gap-3 px-4 flex-shrink-0">
       <button
         onClick={onToggle}
-        className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+        className="p-2 text-muted hover:text-ink hover:bg-canvas rounded-lg transition-colors"
         aria-label="Toggle sidebar"
       >
         <Menu size={20} />
@@ -24,14 +24,14 @@ export default function AppHeader({ userName, onToggle }: AppHeaderProps) {
         <div className="w-7 h-7 bg-blue-600 rounded-md flex items-center justify-center">
           <GraduationCap size={14} className="text-white" />
         </div>
-        <span className="text-sm font-heading font-bold text-gray-900">Belajar TPA</span>
+        <span className="text-sm font-heading font-bold text-ink">Belajar TPA</span>
       </Link>
 
       <div className="flex-1" />
 
       {/* User info */}
       <div className="flex items-center gap-2.5">
-        <span className="hidden sm:block text-sm font-medium text-gray-700">{userName}</span>
+        <span className="hidden sm:block text-sm font-medium text-body">{userName}</span>
         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
           <span className="text-xs font-semibold text-blue-700">
             {userName.charAt(0).toUpperCase()}

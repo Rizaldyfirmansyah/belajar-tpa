@@ -17,6 +17,16 @@ const config: Config = {
         verbal: '#3b82f6',
         kuantitatif: '#10b981',
         logika: '#8b5cf6',
+
+        // Warm minimal — dipakai untuk permukaan & teks.
+        // Krem, bukan putih murni: putih #fff + teks hitam pekat memicu
+        // halation yang melelahkan saat belajar berjam-jam.
+        canvas:  '#FAF9F6',
+        surface: '#FFFFFF',
+        line:    '#E9E5DD',
+        ink:     '#14181F',
+        body:    '#41474F',
+        muted:   '#767C87',
       },
       animation: {
         'pulse-slow': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',

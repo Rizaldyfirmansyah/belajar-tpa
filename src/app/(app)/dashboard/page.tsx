@@ -10,6 +10,7 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 import AILoadingCard from '@/components/shared/AILoadingCard'
+import DashboardGreeting from '@/components/dashboard/DashboardGreeting'
 import ScoreTrendChart from '@/components/dashboard/ScoreTrendChart'
 import SubtestGauge from '@/components/dashboard/SubtestGauge'
 import TopicAccuracyChart from '@/components/dashboard/TopicAccuracyChart'
@@ -50,10 +51,7 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div>
-        <h1 className="page-title">Dashboard</h1>
-        <p className="text-gray-500 text-sm mt-1">Pantau progress belajar TPA kamu</p>
-      </div>
+      <DashboardGreeting metrics={m} />
 
       {/* Row 1: Summary cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

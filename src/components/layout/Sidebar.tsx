@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { BookOpen, BarChart2, ClipboardList, Bookmark, LogOut, GraduationCap, ShieldCheck } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
+import FeedbackButton from '@/components/layout/FeedbackButton'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
@@ -99,6 +100,9 @@ export default function Sidebar({ isOpen, onClose, isAdmin = false }: SidebarPro
           )
         })}
       </nav>
+
+      {/* Saran */}
+      <FeedbackButton isOpen={isOpen} />
 
       {/* Admin */}
       {isAdmin && (

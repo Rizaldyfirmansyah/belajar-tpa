@@ -9,18 +9,9 @@ import Button from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 import type { ApiResponse } from '@/types'
 
-const KINDS = [
-  { id: 'saran', label: 'Saran' },
-  { id: 'bug', label: 'Ada Error' },
-  { id: 'lainnya', label: 'Lainnya' },
-] as const
-
-type Kind = (typeof KINDS)[number]['id']
-
 export default function FeedbackButton({ isOpen }: { isOpen: boolean }) {
   const pathname = usePathname()
   const [modalOpen, setModalOpen] = useState(false)
-  const [kind, setKind] = useState<Kind>('saran')
   const [message, setMessage] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [sent, setSent] = useState(false)
@@ -37,7 +28,6 @@ export default function FeedbackButton({ isOpen }: { isOpen: boolean }) {
     // Reset setelah animasi tutup, biar isinya tidak berkedip saat ditutup.
     setTimeout(() => {
       setMessage('')
-      setKind('saran')
       setSent(false)
       setError('')
     }, 200)
@@ -54,7 +44,7 @@ export default function FeedbackButton({ isOpen }: { isOpen: boolean }) {
       const res = await fetch('/api/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ kind, message: message.trim(), page: pathname }),
+        body: JSON.stringify({ message: message.trim(), page: pathname }),
       })
       const json: ApiResponse = await res.json()
       if (!res.ok) throw new Error(json.error ?? 'Gagal mengirim')
@@ -118,30 +108,6 @@ export default function FeedbackButton({ isOpen }: { isOpen: boolean }) {
             ) : (
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-700">Jenis masukan</label>
-                  <div className="flex gap-2 mt-2">
-                    {KINDS.map((k) => (
-                      <button
-                        key={k.id}
-                        type="button"
-                        onClick={() => setKind(k.id)}
-                        className={cn(
-                          'px-3 h-8 rounded-full text-sm font-medium border transition-colors',
-                          kind === k.id
-                            ? 'bg-blue-600 border-blue-600 text-white'
-                            : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
-                        )}
-                      >
-                        {k.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="feedback-message" className="text-sm font-medium text-gray-700">
-                    Pesan
-                  </label>
                   <textarea
                     id="feedback-message"
                     value={message}
@@ -150,7 +116,7 @@ export default function FeedbackButton({ isOpen }: { isOpen: boolean }) {
                     maxLength={2000}
                     autoFocus
                     placeholder="Fitur apa yang kurang, soal yang salah, atau bagian yang membingungkan?"
-                    className="w-full mt-2 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                   />
                   <p className="text-xs text-gray-400 mt-1">{message.length}/2000</p>
                 </div>
